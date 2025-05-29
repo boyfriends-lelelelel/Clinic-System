@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patient Dashboard - DermaHealth</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4461F2',
+          },
+          fontFamily: {
+            pacifico: ['Pacifico', 'cursive'],
+          },
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex">
+  <aside class="w-64 bg-primary text-white p-6 space-y-6 hidden md:block">
+    <div class="text-2xl font-pacifico mb-10">Evercare</div>
+    <nav class="space-y-4">
+      <a href="dashboard-patient.php" class="flex items-center space-x-3 bg-white/20 p-2 rounded"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
+      <a href="appointments.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-calendar-line"></i><span>My Appointments</span></a>
+      <a href="records.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-file-list-3-line"></i><span>Medical Records</span></a>
+      <a href="skinhistory.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-logout-box-r-line"></i><span>Skin Condition History</span></a> 
+      <a href="labresults.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-flask-line"></i><span>Lab Results</span></a>
+      <a href="settings.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-settings-3-line"></i><span>Settings</span></a>
+      <a href="login.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-logout-box-r-line"></i><span>Logout</span></a>
+    </nav>
+  </aside>
+
+  <div class="flex-1 flex flex-col">
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+      <div class="text-xl font-semibold text-primary">Patient Dashboard</div>
+      <div class="flex items-center space-x-4">
+        <i class="ri-notification-3-line text-gray-600 text-xl"></i>
+        <div class="w-8 h-8 bg-gray-300 rounded-full"></div>
+      </div>
+    </header>
+
+    <main class="p-6 space-y-6">
+      <div class="p-6">
+        <h2 class="text-2xl font-semibold mb-6">Welcome back, John Doe!</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-blue-100 p-3 rounded-full">
+              <i class="ri-calendar-check-line text-blue-600 text-3xl"></i>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">Upcoming Appointments</h3>
+              <p class="text-3xl font-semibold text-blue-600 mt-1">2</p>
+            </div>
+          </div>
+
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-indigo-100 p-3 rounded-full">
+              <i class="ri-file-list-3-line text-indigo-600 text-3xl"></i>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">Recent Records</h3>
+              <p class="text-3xl font-semibold text-indigo-600 mt-1">5</p>
+            </div>
+          </div>
+
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-green-100 p-3 rounded-full">
+              <i class="ri-flask-fill text-green-600 text-3xl"></i>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">New Lab Results</h3>
+              <p class="text-3xl font-semibold text-green-600 mt-1">1</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

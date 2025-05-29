@@ -1,0 +1,163 @@
+<!-- dashboard.html -->
+<?php 
+session_start();
+include('connect.php');
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard - DermaHealth</title>
+  <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#4461F2',
+          },
+          fontFamily: {
+            pacifico: ['Pacifico', 'cursive'],
+          },
+        }
+      }
+    };
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex">
+  <aside class="w-64 bg-primary text-white p-6 space-y-6 hidden md:block">
+    <div class="text-2xl font-pacifico mb-10">DermaHealth</div>
+    <nav class="space-y-4">
+      <a href="dashboard.php" class="flex items-center space-x-3 bg-white/20 p-2 rounded"><i class="ri-dashboard-line"></i><span>Dashboard</span></a>
+      <a href="patients.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-user-line"></i><span>Patients</span></a>
+      <a href="appointments.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-calendar-line"></i><span>Appointments</span></a>
+      <a href="records.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-file-list-3-line"></i><span>Medical Records</span></a> 
+      <a href="skinhistory.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-logout-box-r-line"></i><span>Skin Condition History</span></a>
+      <a href="labresults.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-flask-line"></i><span>Lab Results</span></a>
+      <a href="settings.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-settings-3-line"></i><span>Settings</span></a>
+      <a href="login.php" class="flex items-center space-x-3 hover:bg-white/10 p-2 rounded"><i class="ri-logout-box-r-line"></i><span>Logout</span></a>
+     
+    </nav>
+  </aside>
+
+  <div class="flex-1 flex flex-col">
+    <header class="bg-white shadow p-4 flex justify-between items-center">
+      <div class="text-3xl font-semibold text-primary">Dashboard</div>
+      <div class="flex items-center space-x-4">
+        <i class="ri-notification-3-line text-gray-600 text-xl"></i>
+        <div class="w-8 h-8 bg-gray-300 rounded-full"></div>
+      </div>
+    </header>
+
+    <main class="p-6 space-y-6">
+      <div class="p-6">
+        <main class="p-6 space-y-6">
+      <div class="p-6">
+  <h2 class="text-2xl font-semibold mb-6">Welcome, <?php 
+    if(isset($_SESSION['email']))
+    {
+      $email=$_SESSION['email'];
+      $query=mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.Username='$email'");
+      while($row=mysqli_fetch_array($query))
+      {
+        echo $row['Username'];
+      }
+    }
+  ?>
+  !</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-blue-100 p-3 rounded-full">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M8 7V3m8 4V3M5 11h14M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">Today's Appointments</h3>
+              <p class="text-3xl font-semibold text-blue-600 mt-1">8</p>
+            </div>
+          </div>
+
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-indigo-100 p-3 rounded-full">
+              <svg class="w-8 h-8 text-indigo-600" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 14c3.866 0 7 1.343 7 3v3H5v-3c0-1.657 3.134-3 7-3zm0-4a4 4 0 100-8 4 4 0 000 8z" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">Active Patients</h3>
+              <p class="text-3xl font-semibold text-indigo-600 mt-1">120</p>
+            </div>
+          </div>
+
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-blue-100 p-3 rounded-full">
+              <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 2v6l-4 8v6h14v-6l-4-8V2H9zM12 14v2m0-8v2" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">Pending Lab Results</h3>
+              <p class="text-3xl font-semibold text-blue-500 mt-1">5</p>
+            </div>
+          </div>
+
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-green-100 p-3 rounded-full">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 14c4.418 0 8 1.79 8 4v2H4v-2c0-2.21 3.582-4 8-4zm0-2a4 4 0 100-8 4 4 0 000 8zm4-5h2m-1-1v2" />
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">Doctors On Duty</h3>
+              <p class="text-3xl font-semibold text-green-600 mt-1">3</p>
+            </div>
+          </div>
+
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-purple-100 p-3 rounded-full">
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M9 12h6m-6 4h6M5 6h14M4 6v14a2 2 0 002 2h12a2 2 0 002-2V6H4z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">Records This Month</h3>
+              <p class="text-3xl font-semibold text-purple-600 mt-1">42</p>
+            </div>
+          </div>
+
+          <div class="bg-white shadow rounded-xl p-6 flex items-center gap-4 hover:shadow-md transition">
+            <div class="bg-yellow-100 p-3 rounded-full">
+              <svg class="w-8 h-8 text-yellow-500" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-sm text-gray-500">Upcoming Appointments</h3>
+              <p class="text-3xl font-semibold text-yellow-500 mt-1">15</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
